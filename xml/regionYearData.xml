@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<data>
+	<dataitem>
+		<Year>2009</Year>
+	    <Country>North America</Country>
+	    <Traffic>150314.76</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2009</Year>	
+	    <Country>Latin America</Country>
+	    <Traffic>26427.34</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2009</Year>
+	    <Country>Asia-Pacific</Country>
+	    <Traffic>289880.69</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2009</Year>
+	    <Country>Europe</Country>
+	    <Traffic>216529.45</Traffic>
+	</dataitem>			
+	<dataitem>
+		<Year>2009</Year>
+	    <Country>Africa/Middle East</Country>
+	    <Traffic>40605.82</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2010</Year>
+	    <Country>North America</Country>
+	    <Traffic>292329.28</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2010</Year>	
+	    <Country>Latin America</Country>
+	    <Traffic>63535.84</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2010</Year>
+	    <Country>Asia-Pacific</Country>
+	    <Traffic>534987.14</Traffic>
+	</dataitem>
+	<dataitem>
+		<Year>2010</Year>
+	    <Country>Europe</Country>
+	    <Traffic>423845.50</Traffic>
+	</dataitem>			
+	<dataitem>
+		<Year>2010</Year>
+	    <Country>Africa/Middle East</Country>
+	    <Traffic>90962.80</Traffic>
+	</dataitem>	
+</data>

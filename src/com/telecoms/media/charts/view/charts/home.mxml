@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" 
+		width="100%" 
+		horizontalScrollPolicy="off" 
+		verticalScrollPolicy="off"
+		y="0" 
+		autoLayout="false" xmlns:mx1="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark"
+		>
+<mx:Script>
+	<![CDATA[
+		import com.telecoms.media.charts.control.events.charts.LoadAppYearEvent;
+		import com.telecoms.media.charts.model.ChartsModelLocator;
+		
+		import mx.charts.CategoryAxis;
+		import mx.charts.ColumnChart;
+		import mx.charts.Legend;
+		import mx.charts.PieChart;
+		import mx.charts.chartClasses.Series;
+		import mx.charts.series.ColumnSeries;
+		import mx.charts.series.ColumnSet;
+		import mx.charts.series.PieSeries;
+		import mx.collections.ArrayCollection;
+		import mx.effects.Tween;
+		import mx.events.ListEvent;
+		import mx.charts.events.ChartItemEvent;
+		
+		[Bindable]
+		public var model:ChartsModelLocator = ChartsModelLocator.getInstance();
+		private var tween:Tween;
+		private var itemIndex:int = 0;
+		private var totalImages:int = -3;
+		public var serviceArray:Array = new Array;
+		public var serviceColumn:ColumnSeries = new ColumnSeries;
+		public var stackedColumnChart:ColumnChart;
+		public var isoPieChart:PieChart;
+		public var newSeries:Array;
+		[Bindable]
+		public var seriesDetails:ArrayCollection = new ArrayCollection;
+		
+		private var chart:PieChart;
+		private var series:PieSeries;
+		
+		[Bindable]
+		private var medalsAC:ArrayCollection = new ArrayCollection( [
+			{ Country: "USA", Gold: 35, Silver:39, Bronze: 29 },
+			{ Country: "China", Gold: 32, Silver:17, Bronze: 14 },
+			{ Country: "Russia", Gold: 27, Silver:27, Bronze: 38 } 
+		]);
+		
+		private function refactored():void
+		{
+			var item:Object = { Country: "Eire", Gold: 55, Silver:39, Bronze: 9 };
+			medalsAC.addItem(item);
+		}
+		
+		private function displayGold(data:Object, field:String, index:Number, percentValue:Number):String {
+			var temp:String= (" " + percentValue).substr(0,6);
+			return data.app + ": " + '\n' + "Total Gold: " + data.year + '\n' + temp + "%";
+		}
+		
+		// Load Image data
+		public function loadXML():void
+		{
+			var appEvent:LoadAppYearEvent=null;
+			appEvent=new LoadAppYearEvent();
+			appEvent.dispatch();
+			
+			refactored();
+		}
+		private function serviceSlice():void
+		{
+			
+			serviceColumn.xField = model.appYearData.Year.@date;
+			for(var i:int = 0; i < 6; i++){
+			serviceColumn = new ColumnSeries;
+			serviceColumn.yField = model.appYearData.Year[i].Communication;
+			trace(serviceColumn.yField);
+			serviceColumn.displayName = 'Communication';
+			serviceArray.push(serviceColumn);
+			}
+			//ColumnChart.series = serviceArray;
+			trace(serviceArray);
+		}		
+
+		// Define the event handler.
+		public function hitDataListener(e:ChartItemEvent):void {
+			trace(e.hitData.item.date);
+			trace(e.hitData.x + "/" + e.hitData.y); 
+		}
+	]]>
+</mx:Script>	
+	
+	<!-- Define custom colors for use as fills in the AreaChart control. -->
+	<mx:SolidColor id="sc1" color="blue" alpha=".3"/>
+	<mx:SolidColor id="sc2" color="red" alpha=".3"/>
+	<mx:SolidColor id="sc3" color="green" alpha=".3"/>
+	<mx:SolidColor id="sc4" color="black" alpha=".3"/>
+	<mx:SolidColor id="sc5" color="yellow" alpha=".3"/>
+	
+	<!-- Define custom Strokes. -->
+	<mx:Stroke id = "s1" color="blue" weight="2"/>
+	<mx:Stroke id = "s2" color="red" weight="2"/>
+	<mx:Stroke id = "s3" color="green" weight="2"/>
+	<mx:Stroke id = "s4" color="black" weight="2"/>
+	<mx:Stroke id = "s5" color="yellow" weight="2"/>
+	
+	<mx:SeriesInterpolate id="interpolate" duration="1000"/>
+	
+<mx:VBox>
+	<mx:Panel width="600" title="IC" id="panelActionscript"  horizontalAlign="center">
+		
+		<!--<mx:ColumnChart id="ColumnChart1" height="200" width="200"
+					  paddingLeft="5" paddingRight="5" type="stacked" 
+					  showDataTips="true" dataProvider="{model.convertedXML}">
+			<mx:horizontalAxis>
+				<mx:CategoryAxis categoryField="date" displayName="date"/>
+			</mx:horizontalAxis>
+			
+			<mx:series>
+				<mx:ColumnSeries id="cs1" yField="NorthAmerica" displayName="North America" />
+				<mx:ColumnSeries id="cs2" yField="LatinAmerica" displayName="Latin America" />
+				<mx:ColumnSeries id="cs3" yField="Asia-Pacific" displayName="Asia-Pacific" />
+				<mx:ColumnSeries id="cs4" yField="Europe" displayName="Europe" />
+				<mx:ColumnSeries id="cs5" yField="Africa-MiddleEast" displayName="Africa/Middle-East" />
+			</mx:series>
+		</mx:ColumnChart>-->
+		
+		<mx:DataGrid dataProvider="{model.convertedServiceXML}">
+			<mx:columns>
+				<mx:DataGridColumn dataField="data.content.title"/>
+				<mx:DataGridColumn dataField="data.content.format"/>
+				<mx:DataGridColumn dataField="data.content.displayDate"/>
+			</mx:columns>
+		</mx:DataGrid>
+
+	</mx:Panel>
+
+</mx:VBox>
+
+</mx:Canvas>
