@@ -34,8 +34,6 @@ package com.telecoms.media.charts.control.command
 		{
 			model.appYearData = event.token.result as XML;
 			model.convertedXML = convertXmlToArrayCollection(model.appYearData);
-			
-			trace(model.appYearData.content.length());
 		}
 		
 		private function convertXmlToArrayCollection( file:String ):ArrayCollection

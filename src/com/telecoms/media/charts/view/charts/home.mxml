@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" 
-		width="100%" 
+		width="820" 
 		horizontalScrollPolicy="off" 
 		verticalScrollPolicy="off"
 		y="0" 
@@ -105,36 +105,13 @@
 	<mx:Stroke id = "s5" color="yellow" weight="2"/>
 	
 	<mx:SeriesInterpolate id="interpolate" duration="1000"/>
-	
-<mx:VBox>
-	<mx:Panel width="600" title="IC" id="panelActionscript"  horizontalAlign="center">
 		
-		<!--<mx:ColumnChart id="ColumnChart1" height="200" width="200"
-					  paddingLeft="5" paddingRight="5" type="stacked" 
-					  showDataTips="true" dataProvider="{model.convertedXML}">
-			<mx:horizontalAxis>
-				<mx:CategoryAxis categoryField="date" displayName="date"/>
-			</mx:horizontalAxis>
-			
-			<mx:series>
-				<mx:ColumnSeries id="cs1" yField="NorthAmerica" displayName="North America" />
-				<mx:ColumnSeries id="cs2" yField="LatinAmerica" displayName="Latin America" />
-				<mx:ColumnSeries id="cs3" yField="Asia-Pacific" displayName="Asia-Pacific" />
-				<mx:ColumnSeries id="cs4" yField="Europe" displayName="Europe" />
-				<mx:ColumnSeries id="cs5" yField="Africa-MiddleEast" displayName="Africa/Middle-East" />
-			</mx:series>
-		</mx:ColumnChart>-->
-		
-		<mx:DataGrid dataProvider="{model.convertedServiceXML}">
+		<mx:DataGrid dataProvider="{model.convertedXML}" width="100%" height="400" rowCount="{model.convertedXML.length}">
 			<mx:columns>
-				<mx:DataGridColumn dataField="data.content.title"/>
-				<mx:DataGridColumn dataField="data.content.format"/>
-				<mx:DataGridColumn dataField="data.content.displayDate"/>
+				<mx:DataGridColumn dataField="title" headerText="Title" minWidth="250"/>
+				<mx:DataGridColumn dataField="format" headerText="Format"/>
+				<mx:DataGridColumn dataField="displayDate" headerText="Date"/>
 			</mx:columns>
 		</mx:DataGrid>
-
-	</mx:Panel>
-
-</mx:VBox>
 
 </mx:Canvas>
