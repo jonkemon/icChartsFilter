@@ -39,10 +39,12 @@
 		
 	</s:layout>
 	
-	<mx:TextInput id="search" change="filterDemo()" /> 
-	<mx:Button label="Clear Search" click="clearSearch()" />
+	<mx:HBox width="100%" horizontalAlign="right">
+		<mx:TextInput id="search" change="filterDemo()" /> 
+		<mx:Button label="Clear Search" click="clearSearch()" />
+	</mx:HBox>
 	
-	<mx:DataGrid dataProvider="{model.convertedXML}" width="100%" height="400" rowCount="{model.convertedXML.length}">
+	<mx:DataGrid dataProvider="{model.convertedXML}" width="100%" height="400" rowCount="{model.convertedXML.length}" rowHeight="25">
 		<mx:columns>
 			<mx:DataGridColumn dataField="title" headerText="Title" minWidth="250"/>
 			<mx:DataGridColumn dataField="format" headerText="Format"/>

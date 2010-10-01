@@ -50,8 +50,9 @@
 	<mx:SolidColor id="sc5" color="yellow" alpha=".3"/>
 	
 	<mx:SeriesInterpolate id="interpolate" duration="1000"/>
-	
-	<mx:VBox width="100%">
+
+	<mx:VBox width="100%" paddingLeft="20" paddingRight="20" paddingTop="20"
+			 paddingBottom="20" backgroundColor="#FFFFFF" verticalGap="20" borderColor="#84A3C6" borderStyle="inset" cornerRadius="0" dropShadowVisible="true">
 		<chartComponents:ResultsTable id="resultsTable"/>		
 		<chartComponents:TopicsChart id="topicsChart"/>
 	</mx:VBox>
