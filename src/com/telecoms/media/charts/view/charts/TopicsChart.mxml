@@ -26,21 +26,11 @@
 	<mx:ColumnChart id="ColumnChart2" height="250" width="100%"
 					paddingLeft="5" paddingRight="5" type="stacked"
 					showDataTips="true" dataProvider="{model.convertedXML}" itemClick="{drillDown(event)}" >
-		<mx:horizontalAxis>
-			<mx:CategoryAxis dataProvider="{model.initYearAxisData}" categoryField="date" displayName="date"/>
-		</mx:horizontalAxis>
-		
-		<mx:verticalAxis>
-			<mx:LinearAxis title="TB" minimum="0" maximum="18000000" />
-		</mx:verticalAxis>
 		
 		<mx:series>
-			<mx:ColumnSeries id="cs6" yField="Communication" displayName="Communication" validationSubField="Communication: VOIP, Messaging" showDataEffect="slideIn" hideDataEffect="slideOut"/>
-			<mx:ColumnSeries id="cs7" yField="Entertainment" displayName="Entertainment" validationSubField="Entertainment: Music, Games, Images, Gambling" showDataEffect="slideIn" hideDataEffect="slideOut" />
-			<mx:ColumnSeries id="cs8" yField="VideoTV" displayName="Video/TV" validationSubField="Video/TV: TV, Video" showDataEffect="slideIn" hideDataEffect="slideOut" />
-			<mx:ColumnSeries id="cs9" yField="Information" displayName="Information" validationSubField="Information: LBS, Social Networking, Mobile Payments/Banking" showDataEffect="slideIn" hideDataEffect="slideOut" />
-			<mx:ColumnSeries id="cs10" yField="Mobile" displayName="Mobile" validationSubField="Mobile Browsing: Mobile Internet (on mobile handsets)" showDataEffect="slideIn" hideDataEffect="slideOut" />
-			<mx:ColumnSeries id="cs11" yField="Portable" displayName="Portable" validationSubField="Portable Internet: ‘Mobile Broadband’ via Embedded Modems, Dongles, Datacards" showDataEffect="slideIn" hideDataEffect="slideOut" />
+			<mx:ColumnSeries id="cs6" yField="Analysis" displayName="Communication" validationSubField="Communication: VOIP, Messaging" showDataEffect="slideIn" hideDataEffect="slideOut"/>
+			<mx:ColumnSeries id="cs7" yField="News" displayName="Entertainment" validationSubField="Entertainment: Music, Games, Images, Gambling" showDataEffect="slideIn" hideDataEffect="slideOut" />
+			<mx:ColumnSeries id="cs8" yField="Update" displayName="Video/TV" validationSubField="Video/TV: TV, Video" showDataEffect="slideIn" hideDataEffect="slideOut" />
 		</mx:series>
 	</mx:ColumnChart>
 	
