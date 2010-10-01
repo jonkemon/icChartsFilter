@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" backgroundColor="#FFFFFF" 
+		width="820" 
+		horizontalScrollPolicy="off" 
+		verticalScrollPolicy="off"
+		y="0"
+		autoLayout="true" xmlns:mx1="library://ns.adobe.com/flex/mx" xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:chartComponents="com.telecoms.media.charts.view.charts.*"
+		>
+<mx:Script>
+	<![CDATA[
+		import com.telecoms.media.charts.control.events.charts.LoadAppYearEvent;
+		import com.telecoms.media.charts.model.ChartsModelLocator;
+		
+		import mx.charts.CategoryAxis;
+		import mx.charts.ColumnChart;
+		import mx.charts.Legend;
+		import mx.charts.PieChart;
+		import mx.charts.chartClasses.Series;
+		import mx.charts.events.ChartItemEvent;
+		import mx.charts.series.ColumnSeries;
+		import mx.charts.series.ColumnSet;
+		import mx.charts.series.PieSeries;
+		import mx.collections.ArrayCollection;
+		import mx.effects.Tween;
+		import mx.events.ItemClickEvent;
+		import mx.events.ListEvent;
+		
+		import com.telecoms.media.charts.view.charts.TopicsChart;
+		
+		[Bindable]
+		public var model:ChartsModelLocator = ChartsModelLocator.getInstance();
+		
+		// Load Image data
+		public function loadXML():void
+		{
+			var appEvent:LoadAppYearEvent=null;
+			appEvent=new LoadAppYearEvent();
+			appEvent.dispatch();
+		}
+	
+	]]>
+</mx:Script>	
+	
+	<!-- Define custom colors for use as fills in the AreaChart control. -->
+	<mx:SolidColor id="sc1" color="blue" alpha=".3"/>
+	<mx:SolidColor id="sc2" color="red" alpha=".3"/>
+	<mx:SolidColor id="sc3" color="green" alpha=".3"/>
+	<mx:SolidColor id="sc4" color="black" alpha=".3"/>
+	<mx:SolidColor id="sc5" color="yellow" alpha=".3"/>
+	
+	<mx:SeriesInterpolate id="interpolate" duration="1000"/>
+	
+	<mx:VBox width="100%">
+		<chartComponents:ResultsTable id="resultsTable"/>		
+		<chartComponents:TopicsChart id="topicsChart"/>
+	</mx:VBox>
+	
+
+</mx:Canvas>
