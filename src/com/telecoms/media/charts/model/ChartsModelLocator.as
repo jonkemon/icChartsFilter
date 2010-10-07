@@ -12,8 +12,7 @@ package com.telecoms.media.charts.model
 		public var since:String = new String;
 		public var page:int = new int;
 		public var pageSize:int = new int;
-		
-		public var initYearAxisData:ArrayCollection = new ArrayCollection([{date:"2009"},{date:"2010"},{date:"2011"},{date:"2012"},{date:"2013"},{date:"2014"}]);
+		public var reportFormats:ArrayCollection = new ArrayCollection([{format:"News",biff:"Guy"},{format:"Analysis"},{format:"Update"}]);
 
 		static public function getInstance():ChartsModelLocator
 		{

@@ -5,8 +5,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			
 			import com.telecoms.media.charts.model.ChartsModelLocator;
+			
+			import mx.charts.chartClasses.AxisBase;
 			import mx.charts.events.ChartItemEvent;
 			
 			[Bindable]
@@ -14,6 +15,13 @@
 			
 			private function drillDown(e:ChartItemEvent):void{
 				trace('Chart Item Clicked');
+			}
+			
+			private function catFunc(axis:AxisBase, item:Object):Object {
+				for (var s:String in item) {
+					trace(s + ":" + item[s]);
+				}	
+				return(item.format);
 			}
 
 		]]>
@@ -25,12 +33,23 @@
 	
 	<mx:ColumnChart id="ColumnChart2" height="250" width="100%"
 					paddingLeft="5" paddingRight="5" type="stacked"
-					showDataTips="true" dataProvider="{model.convertedXML}" itemClick="{drillDown(event)}" >
+					showDataTips="true" dataProvider="{model.convertedServiceXML}" itemClick="{drillDown(event)}" >
+		<mx:verticalAxis>
+			<mx:CategoryAxis 
+				dataProvider="{model.reportFormats}" 
+				 dataFunction="catFunc"
+				/>
+		</mx:verticalAxis>
+		<mx:horizontalAxis>
+			<mx:CategoryAxis 
+				dataProvider="{model.convertedXML}" 
+				categoryField="format"
+				/>
+		</mx:horizontalAxis>
 		
 		<mx:series>
-			<mx:ColumnSeries id="cs6" yField="Analysis" displayName="Analysis"/>
-			<mx:ColumnSeries id="cs7" yField="News" displayName="News"/>
-			<mx:ColumnSeries id="cs8" yField="Update" displayName="Update"/>
+			<mx:ColumnSeries id="newsAxis" xField="News" displayName="News"/>
+			<mx:ColumnSeries id="analysisAxis" xField="Analysis" displayName="Analysis"/>
 		</mx:series>
 	</mx:ColumnChart>
 	
