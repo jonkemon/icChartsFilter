@@ -8,7 +8,9 @@
 			import com.telecoms.media.charts.model.ChartsModelLocator;
 			
 			import mx.charts.chartClasses.AxisBase;
+			import mx.charts.chartClasses.Series;
 			import mx.charts.events.ChartItemEvent;
+			import mx.collections.ArrayCollection;
 			
 			[Bindable]
 			public var model:ChartsModelLocator = ChartsModelLocator.getInstance();
@@ -17,13 +19,32 @@
 				trace('Chart Item Clicked');
 			}
 			
-			private function catFunc(axis:AxisBase, item:Object):Object {
+			private function catFunc(axis:AxisBase, item:Object):Object {					
+				var tempVerticalAxisObj:Object = item[s];				
 				for (var s:String in item) {
 					if(item[s]=="News"){
-					trace(s + ":" + item[s]);
+					tempVerticalAxisObj = item[s];
+					}
+					if(item[s]=="Analysis"){
+						tempVerticalAxisObj = item[s];
+					}
+					if(item[s]=="Update"){
+						tempVerticalAxisObj = item[s];
 					}
 				}	
-				return(item.format);
+				return(tempVerticalAxisObj);
+			}
+			
+			private function dataFunc(series:Series, item:Object, fieldName:String):Object {
+				trace("fieldName: " + fieldName);
+				if(fieldName == "yValue" && series.id=="highClose")
+					return(item.close.High);
+				else if(fieldName == "yValue" && series.id=="lowClose")
+					return(item.close.Low);
+				else if(fieldName == "xValue")
+					return(item.month);
+				else
+					return null;
 			}
 
 		]]>
@@ -50,7 +71,7 @@
 		</mx:horizontalAxis>
 		
 		<mx:series>
-			<mx:ColumnSeries id="newsAxis" xField="News" displayName="News"/>
+			<mx:ColumnSeries id="newsAxis" displayName="News" dataFunction="dataFunc"/>
 			<mx:ColumnSeries id="analysisAxis" xField="Analysis" displayName="Analysis"/>
 		</mx:series>
 	</mx:ColumnChart>
