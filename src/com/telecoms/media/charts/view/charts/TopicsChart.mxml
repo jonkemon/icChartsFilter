@@ -28,9 +28,9 @@
 					showDataTips="true" dataProvider="{model.convertedXML}" itemClick="{drillDown(event)}" >
 		
 		<mx:series>
-			<mx:ColumnSeries id="cs6" yField="Analysis" displayName="Communication" validationSubField="Communication: VOIP, Messaging" showDataEffect="slideIn" hideDataEffect="slideOut"/>
-			<mx:ColumnSeries id="cs7" yField="News" displayName="Entertainment" validationSubField="Entertainment: Music, Games, Images, Gambling" showDataEffect="slideIn" hideDataEffect="slideOut" />
-			<mx:ColumnSeries id="cs8" yField="Update" displayName="Video/TV" validationSubField="Video/TV: TV, Video" showDataEffect="slideIn" hideDataEffect="slideOut" />
+			<mx:ColumnSeries id="cs6" yField="Analysis" displayName="Analysis"/>
+			<mx:ColumnSeries id="cs7" yField="News" displayName="News"/>
+			<mx:ColumnSeries id="cs8" yField="Update" displayName="Update"/>
 		</mx:series>
 	</mx:ColumnChart>
 	
