@@ -19,7 +19,9 @@
 			
 			private function catFunc(axis:AxisBase, item:Object):Object {
 				for (var s:String in item) {
+					if(item[s]=="News"){
 					trace(s + ":" + item[s]);
+					}
 				}	
 				return(item.format);
 			}
