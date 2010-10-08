@@ -27,6 +27,20 @@
 				return yAxisData;
 			}
 			
+			// Create ArrayCollection for Y Axis
+			private function createHorizontalAxisData(totalData:ArrayCollection):ArrayCollection {
+				var tempArray:Array = new Array;
+				
+				for(var i:int=0;i<totalData.length;i++){
+					trace(totalData[i].format);
+					/*if( tempArray.indexOf(totalData[i].format)==-1) {
+						tempArray.push(totalData[i].format);
+					}*/
+				}
+				var yAxisData:ArrayCollection = new ArrayCollection(tempArray);
+				return yAxisData;
+			}
+			
 			private function drillDown(e:ChartItemEvent):void{
 				trace('Chart Item Clicked');
 			}
@@ -46,6 +60,12 @@
 					return null;
 			}
 
+
+			protected function categoryaxis1_activateHandler(event:Event):void
+			{
+				// TODO Auto-generated method stub
+			}
+
 		]]>
 	</fx:Script>
 	<s:layout>
@@ -53,17 +73,39 @@
 		
 	</s:layout>
 	
+	<fx:Declarations>
+		<mx:Parallel id="showEffects">
+			<mx:WipeRight duration="2000"/>
+			<mx:Fade alphaFrom="0" alphaTo="1" duration="4000"/>
+		</mx:Parallel>
+	</fx:Declarations>
+	
+	
 	<mx:BarChart id="formatsChart" height="250" width="100%"
-					paddingLeft="5" paddingRight="5" 
-					showDataTips="true" dataProvider="{model.convertedXML}" itemClick="{drillDown(event)}" >
-		<mx:verticalAxis>
-			<mx:CategoryAxis 
-				dataProvider="{createVerticalAxisData(model.convertedXML)}"
-				/>
-		</mx:verticalAxis>
+					paddingLeft="5" paddingRight="5"
+					showDataTips="true" dataProvider="{model.formatNumbersCol}" itemClick="{drillDown(event)}" >
 		
 		<mx:series>
-			<mx:ColumnSeries id="news" dataFunction="dataFunc" displayName="Format"/>
+			<mx:ColumnSeries id="news" xField="News" displayName="News"/>
+			<mx:ColumnSeries id="update" xField="Update" displayName="Update"/>
+			<mx:ColumnSeries id="analysis" xField="Analysis" displayName="Analysis"/>
+			<mx:ColumnSeries id="comment" xField="Comment" displayName="Comment"/>
+		</mx:series>
+	</mx:BarChart>
+	
+	<mx:BarChart id="myChart" dataProvider="{model.expenses}" showDataTips="true" showEffect="showEffects">
+		<mx:verticalAxis>
+			<mx:CategoryAxis 
+				dataProvider="{model.expenses}" 
+				categoryField="Format"
+				/>
+		</mx:verticalAxis>
+		<mx:series>
+			<mx:BarSeries 
+				yField="Format" 
+				xField="TotalReports" 
+				displayName="Total Reports" 
+				/>
 		</mx:series>
 	</mx:BarChart>
 	
