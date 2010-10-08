@@ -65,6 +65,18 @@
 			{
 				// TODO Auto-generated method stub
 			}
+			
+			private function reportsFormatChartData(xmlData:XML):ArrayCollection{
+				var reportsFormatData:ArrayCollection;
+				trace(xmlData.content[0].format);
+				
+				for each (var thexml:XML in xmlData){
+					var obj:Object= {"Format":thexml.content.@format};
+					reportsFormatData.addItem(obj);
+					}
+				trace(reportsFormatData);
+				return reportsFormatData;
+			}
 
 		]]>
 	</fx:Script>
@@ -93,10 +105,10 @@
 		</mx:series>
 	</mx:BarChart>
 	
-	<mx:BarChart id="myChart" dataProvider="{model.expenses}" showDataTips="true" showEffect="showEffects">
+	<mx:BarChart id="myChart" dataProvider="{reportsFormatChartData(model.appYearData)}" showDataTips="true" showEffect="showEffects">
 		<mx:verticalAxis>
 			<mx:CategoryAxis 
-				dataProvider="{model.expenses}" 
+				dataProvider="{model.reportsFormatArrCol}" 
 				categoryField="Format"
 				/>
 		</mx:verticalAxis>

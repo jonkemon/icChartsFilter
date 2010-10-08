@@ -19,7 +19,7 @@ package com.telecoms.media.charts.model
 			{News:37, Analysis:6, Update:5, Comment:1}
 		]);
 		
-		public var expenses:ArrayCollection = new ArrayCollection([
+		public var reportsFormatArrCol:ArrayCollection = new ArrayCollection([
 			{Format:"News", TotalReports:37},
 			{Format:"Update", TotalReports:10},
 			{Format:"Analysis", TotalReports:5}
