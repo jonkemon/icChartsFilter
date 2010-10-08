@@ -12,8 +12,11 @@ package com.telecoms.media.charts.model
 		public var since:String = new String;
 		public var page:int = new int;
 		public var pageSize:int = new int;
-		public var reportFormats:ArrayCollection = new ArrayCollection([{format:"News",biff:"Guy"},{format:"Analysis"},{format:"Update"}]);
-
+		public var formatNumbers:Array = [
+			{News:37, Analysis:6, Update:5, Comment:1},
+			{News:37, Analysis:6, Update:5, Comment:1}
+		];
+		
 		static public function getInstance():ChartsModelLocator
 		{
 			if(__instance == null)

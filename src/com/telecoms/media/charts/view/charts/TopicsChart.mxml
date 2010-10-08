@@ -15,34 +15,33 @@
 			[Bindable]
 			public var model:ChartsModelLocator = ChartsModelLocator.getInstance();
 			
+			// Create ArrayCollection for Y Axis
+			private function createVerticalAxisData(totalData:ArrayCollection):ArrayCollection {
+				var tempArray:Array = new Array;
+				for(var i:int=0;i<totalData.length;i++){
+					if( tempArray.indexOf(totalData[i].format)==-1) {
+						tempArray.push(totalData[i].format);
+					}
+				}
+				var yAxisData:ArrayCollection = new ArrayCollection(tempArray);
+				return yAxisData;
+			}
+			
 			private function drillDown(e:ChartItemEvent):void{
 				trace('Chart Item Clicked');
 			}
 			
-			private function catFunc(axis:AxisBase, item:Object):Object {					
-				var tempVerticalAxisObj:Object = item[s];				
-				for (var s:String in item) {
-					if(item[s]=="News"){
-					tempVerticalAxisObj = item[s];
-					}
-					if(item[s]=="Analysis"){
-						tempVerticalAxisObj = item[s];
-					}
-					if(item[s]=="Update"){
-						tempVerticalAxisObj = item[s];
-					}
-				}	
-				return(tempVerticalAxisObj);
-			}
 			
 			private function dataFunc(series:Series, item:Object, fieldName:String):Object {
-				trace("fieldName: " + fieldName);
-				if(fieldName == "yValue" && series.id=="highClose")
-					return(item.close.High);
-				else if(fieldName == "yValue" && series.id=="lowClose")
-					return(item.close.Low);
+				trace(item.format);
+				if(fieldName == "yValue" && series.id=="news")
+					return(item.format);
+				else if(fieldName == "yValue" && series.id=="update")
+					return(item.format);
+				else if(fieldName == "yValue" && series.id=="analysis")
+					return(item.format);
 				else if(fieldName == "xValue")
-					return(item.month);
+					return(item.format);
 				else
 					return null;
 			}
@@ -54,27 +53,19 @@
 		
 	</s:layout>
 	
-	<mx:ColumnChart id="ColumnChart2" height="250" width="100%"
-					paddingLeft="5" paddingRight="5" type="stacked"
-					showDataTips="true" dataProvider="{model.convertedServiceXML}" itemClick="{drillDown(event)}" >
+	<mx:BarChart id="formatsChart" height="250" width="100%"
+					paddingLeft="5" paddingRight="5" 
+					showDataTips="true" dataProvider="{model.convertedXML}" itemClick="{drillDown(event)}" >
 		<mx:verticalAxis>
 			<mx:CategoryAxis 
-				dataProvider="{model.reportFormats}" 
-				 dataFunction="catFunc"
+				dataProvider="{createVerticalAxisData(model.convertedXML)}"
 				/>
 		</mx:verticalAxis>
-		<mx:horizontalAxis>
-			<mx:CategoryAxis 
-				dataProvider="{model.convertedXML}" 
-				categoryField="format"
-				/>
-		</mx:horizontalAxis>
 		
 		<mx:series>
-			<mx:ColumnSeries id="newsAxis" displayName="News" dataFunction="dataFunc"/>
-			<mx:ColumnSeries id="analysisAxis" xField="Analysis" displayName="Analysis"/>
+			<mx:ColumnSeries id="news" dataFunction="dataFunc" displayName="Format"/>
 		</mx:series>
-	</mx:ColumnChart>
+	</mx:BarChart>
 	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
