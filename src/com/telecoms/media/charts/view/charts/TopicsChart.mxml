@@ -59,20 +59,35 @@
 				else
 					return null;
 			}
-
-
-			protected function categoryaxis1_activateHandler(event:Event):void
-			{
-				// TODO Auto-generated method stub
-			}
 			
 			private function reportsFormatChartData(xmlData:XML):ArrayCollection{
-				var reportsFormatData:ArrayCollection = new ArrayCollection;
+				var totalNodes:int = xmlData.content.length();
+				var allFormatsArr:Array = new Array;
+				var filteredFormatsArr:Array = new Array;
+				var currentItem:String = "";
 				
-				for(var i:int=0; i<xmlData.content.length();i++){
-					var obj:Object = {"Format":xmlData.content[i].format, "TotalReports":1};
-					reportsFormatData.addItem(obj);
+				//Place all Format types from XML service into an Array and sort
+				for(var i:int=0; i<totalNodes; i++){
+					allFormatsArr.push(xmlData.content[i].format);
+				}
+				allFormatsArr.sort();
+				//Count amount of each Format and add to arrayCollection
+				
+				for each(var item:String in allFormatsArr){
+					if(item!=currentItem){
+						filteredFormatsArr.push({Format:item, TotalReports:1});
+						currentItem = item;
 					}
+					else{						
+						filteredFormatsArr[filteredFormatsArr.length -1].TotalReports++;
+					}
+				}
+				
+				var reportsFormatData:ArrayCollection = new ArrayCollection(filteredFormatsArr);
+				
+				//var obj:Object = {"Format":xmlData.content[i].format, "TotalReports":1};
+				//reportsFormatData.addItem(obj);
+				
 				return reportsFormatData;
 			}
 
@@ -91,7 +106,7 @@
 	</fx:Declarations>
 	
 	
-	<mx:BarChart id="formatsChart" height="250" width="100%"
+	<!--<mx:BarChart id="formatsChart" height="250" width="100%"
 					paddingLeft="5" paddingRight="5"
 					showDataTips="true" dataProvider="{model.formatNumbersCol}" itemClick="{drillDown(event)}" >
 		
@@ -101,7 +116,7 @@
 			<mx:ColumnSeries id="analysis" xField="Analysis" displayName="Analysis"/>
 			<mx:ColumnSeries id="comment" xField="Comment" displayName="Comment"/>
 		</mx:series>
-	</mx:BarChart>
+	</mx:BarChart>-->
 	
 	<mx:BarChart id="myChart" dataProvider="{reportsFormatChartData(model.appYearData)}" showDataTips="true" showEffect="showEffects">
 		<mx:verticalAxis>
