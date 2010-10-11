@@ -44,11 +44,11 @@
 		<mx:Button label="Clear Search" click="clearSearch()" />
 	</mx:HBox>
 	
-	<mx:DataGrid dataProvider="{model.convertedXML}" width="100%" height="200" rowCount="{model.convertedXML.length}" rowHeight="25">
+	<mx:DataGrid dataProvider="{model.convertedXML}" width="100%" height="100%" rowCount="{model.convertedXML.length}" rowHeight="25">
 		<mx:columns>
-			<mx:DataGridColumn dataField="title" headerText="Title" minWidth="250"/>
+			<mx:DataGridColumn dataField="title" headerText="Title" minWidth="350"/>
 			<mx:DataGridColumn dataField="format" headerText="Format"/>
-			<mx:DataGridColumn dataField="displayDate" headerText="Date"/>
+			<mx:DataGridColumn dataField="displayDate" headerText="Date" width="73"/>
 		</mx:columns>
 	</mx:DataGrid>
 	
