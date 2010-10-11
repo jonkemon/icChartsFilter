@@ -7,19 +7,19 @@ package com.telecoms.media.charts.control.delegates
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.HTTPService;
 	
-	public class LoadAppYearDelegate
+	public class LoadIcSearchDelegate
 	{
 		private var __locator:ServiceLocator = ServiceLocator.getInstance();
 		private var __service:HTTPService;
 		private var __responder:IResponder;
 		
-		public function LoadAppYearDelegate(responder:IResponder)
+		public function LoadIcSearchDelegate(responder:IResponder)
 		{
-			__service = __locator.getHTTPService("appYearRetrieve");
+			__service = __locator.getHTTPService("icSearchRetrieve");
 			__responder = responder;
 		}
 		
-		public function loadPhotos():void
+		public function loadIcData():void
 		{
 			var token:AsyncToken = __service.send();
 			token.addResponder(__responder);

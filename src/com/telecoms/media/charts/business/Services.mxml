@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rds:ServiceLocator xmlns:rds="com.adobe.cairngorm.business.*" xmlns:mx="http://www.adobe.com/2006/mxml">
-	<mx:HTTPService id="appYearRetrieve" url="https://ic.informatm.com/contents/xml" resultFormat="e4x">
+	<mx:HTTPService id="icSearchRetrieve" url="https://ic.informatm.com/contents/xml" resultFormat="e4x">
 			<mx:request>
 				<since>2010.02.01</since>
 				<page>1</page>

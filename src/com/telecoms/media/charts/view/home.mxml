@@ -9,7 +9,7 @@
 		>
 <mx:Script>
 	<![CDATA[
-		import com.telecoms.media.charts.control.events.charts.LoadAppYearEvent;
+		import com.telecoms.media.charts.control.events.charts.LoadIcSearchEvent;
 		import com.telecoms.media.charts.model.ChartsModelLocator;
 		
 		import mx.charts.CategoryAxis;
@@ -34,9 +34,9 @@
 		// Load Image data
 		public function loadXML():void
 		{
-			var appEvent:LoadAppYearEvent=null;
-			appEvent=new LoadAppYearEvent();
-			appEvent.dispatch();
+			var searchIcDataEvent:LoadIcSearchEvent=null;
+			searchIcDataEvent=new LoadIcSearchEvent();
+			searchIcDataEvent.dispatch();
 		}
 	
 	]]>

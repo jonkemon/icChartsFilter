@@ -2,7 +2,7 @@ package com.telecoms.media.charts.control.command
 {
 	import com.adobe.cairngorm.commands.ICommand;
 	import com.adobe.cairngorm.control.CairngormEvent;
-	import com.telecoms.media.charts.control.delegates.LoadAppYearDelegate;
+	import com.telecoms.media.charts.control.delegates.LoadIcSearchDelegate;
 	import com.telecoms.media.charts.model.ChartsModelLocator;
 	
 	import flash.external.ExternalInterface;
@@ -16,15 +16,15 @@ package com.telecoms.media.charts.control.command
 	import mx.rpc.xml.SimpleXMLDecoder;
 	import mx.utils.ArrayUtil;
 
-	public class LoadAppYearCommand implements ICommand
+	public class LoadIcSearchCommand implements ICommand
 	{		
 		private var model:ChartsModelLocator = ChartsModelLocator.getInstance();
 		private	var c:int = 0;
 		public function execute(event:CairngormEvent):void
 		{
 			var responder:Responder = new Responder(onResults,onFault);
-			var delegate:LoadAppYearDelegate = new LoadAppYearDelegate(responder);
-			delegate.loadPhotos();
+			var delegate:LoadIcSearchDelegate = new LoadIcSearchDelegate(responder);
+			delegate.loadIcData();
 		}
 		private function onFault(event:FaultEvent):void
 		{
