@@ -67,14 +67,12 @@
 			}
 			
 			private function reportsFormatChartData(xmlData:XML):ArrayCollection{
-				var reportsFormatData:ArrayCollection;
-				trace(xmlData.content[0].format);
+				var reportsFormatData:ArrayCollection = new ArrayCollection;
 				
-				for each (var thexml:XML in xmlData){
-					var obj:Object= {"Format":thexml.content.@format};
+				for(var i:int=0; i<xmlData.content.length();i++){
+					var obj:Object = {"Format":xmlData.content[i].format, "TotalReports":1};
 					reportsFormatData.addItem(obj);
 					}
-				trace(reportsFormatData);
 				return reportsFormatData;
 			}
 
@@ -108,7 +106,7 @@
 	<mx:BarChart id="myChart" dataProvider="{reportsFormatChartData(model.appYearData)}" showDataTips="true" showEffect="showEffects">
 		<mx:verticalAxis>
 			<mx:CategoryAxis 
-				dataProvider="{model.reportsFormatArrCol}" 
+				dataProvider="{reportsFormatChartData(model.appYearData)}" 
 				categoryField="Format"
 				/>
 		</mx:verticalAxis>
