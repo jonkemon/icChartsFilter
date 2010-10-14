@@ -57,6 +57,7 @@
 				 paddingBottom="20" backgroundColor="#FFFFFF" verticalGap="20" borderColor="#84A3C6" borderStyle="inset" cornerRadius="0" >
 			<chartComponents:TopicsChart id="formatChart" height="200" width="200"/>
 			<chartComponents:CompanyChart id="companyChart" height="200" width="200"/>
+			<chartComponents:CountriesChart id="countriesChart" height="200" width="200"/>
 		</mx:VBox>
 	</mx:HBox>
 	

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.telecoms.media.charts.model.ChartsModelLocator;
+			import com.telecoms.media.charts.vo.Report;
+			
+			import mx.charts.chartClasses.AxisBase;
+			import mx.charts.chartClasses.Series;
+			import mx.charts.events.ChartItemEvent;
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			public var model:ChartsModelLocator = ChartsModelLocator.getInstance();
+			
+			private function reportsCountriesChartData(xmlData:XML):ArrayCollection{
+				var totalNodes:int = xmlData.content.length();
+				var allCountriesArr:Array = new Array;
+				var filteredCountriesArr:Array = new Array;
+				var currentItem:String = "dummy";
+				
+				//Place all Format types from XML service into an Array and sort
+				for(var i:int=0; i<totalNodes; i++){
+					allCountriesArr.push(xmlData.content[i].countries);
+				}
+				allCountriesArr.sort();
+				
+				//Count amount of each Format and add to arrayCollection
+				for each(var item:String in allCountriesArr){
+					if(item!=currentItem){
+						filteredCountriesArr.push(new Report(item,1));
+						currentItem = item;
+					}
+					else{
+						filteredCountriesArr[filteredCountriesArr.length -1].occurrence++;
+					}
+				}
+				trace(filteredCountriesArr[19]);
+				
+				var reportsCountriesData:ArrayCollection = new ArrayCollection(filteredCountriesArr.slice(0,11));
+				
+				return reportsCountriesData;
+			}
+
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<s:layout>
+		<s:VerticalLayout/>
+		
+	</s:layout>
+
+	<mx:BarChart id="myChart" width="100%" height="100%" dataProvider="{reportsCountriesChartData(model.appYearData)}" showDataTips="true">
+		<mx:verticalAxis>
+			<mx:CategoryAxis 
+				categoryField="Countries"
+				/>
+		</mx:verticalAxis>
+		<mx:series>
+			<mx:BarSeries 
+				yField="Countries" 
+				xField="occurrence" 
+				displayName="Total Reports" 
+				/>
+		</mx:series>
+	</mx:BarChart>
+	
+</s:Group>
