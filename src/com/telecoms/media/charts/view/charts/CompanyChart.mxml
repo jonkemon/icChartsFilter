@@ -39,7 +39,6 @@
 				}
 				
 				var reportsCompaniesData:ArrayCollection = new ArrayCollection(filteredCompaniesArr);
-				trace(filteredCompaniesArr[0].Company);
 				
 				return reportsCompaniesData;
 			}
